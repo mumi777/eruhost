@@ -24,8 +24,9 @@ async def on_message(message):
     if message.author == client.user:
         return
 
-    if message.content == f'{PREFIX}call':
-        await message.channel.send("callback!")
+    if message.content == f'{PREFIX}도움말':
+        embed = discord.Embed(title="고를 수 있는 단어가 2가지 이상이여야 합니다", color=0xFFFF00)
+        await message.channel.send (embed=embed)
 
     if message.content.startswith(f'{PREFIX}hello'):
         await message.channel.send('Hello!')
