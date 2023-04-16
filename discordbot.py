@@ -88,13 +88,13 @@ async def on_message(message):
             
     if message.content == ('^authenticate1'):
         embed = discord.Embed(title="인증을 완료하세요", description="이모지를 눌러주세요.", color=0x00ff00)
-        channel = client.get_channel(f'{INCHANNEL}')
+        channel = client.get_channel(1084411377055178772)
         msg = await channel.send(embed=embed)
         await msg.add_reaction("<:check:1046316929561935934>")
 
     if message.content == ('^authenticate2'):
         embed = discord.Embed(title="아래 역할을 받고싶다면 아래 이모지를 눌러주세요", description=":one: : 공지 알림 :two: : 봇 가동 알림", color=0x00ff00)
-        channel = client.get_channel(f'{ADDGUIDEC}')
+        channel = client.get_channel(1093849627192741928)
         msg = await channel.send(embed=embed)
         await msg.add_reaction("1️⃣")
         await msg.add_reaction("2️⃣")
