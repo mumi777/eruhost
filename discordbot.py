@@ -29,7 +29,7 @@ async def on_message(message):
     if message.content.startswith(f'{PREFIX}hello'):
         await message.channel.send('Hello!')
         
-    if message.content.startswith ("^공지"):
+    if message.content.startswith (f'{PREFIX}공지'):
         await message.channel.purge(limit=1)
         i = (message.author.guild_permissions.administrator)
         if i is True:
@@ -43,7 +43,7 @@ async def on_message(message):
  
         if i is False:
             await message.channel.send("{}, 당신은 관리자가 아닙니다".format(message.author.mention))
-    if message.content == ("^규칙"):
+    if message.content == (f'{PREFIX}규칙'):
         await message.channel.purge(limit=1)
         i = (message.author.guild_permissions.administrator)
         if i is True:
@@ -58,7 +58,7 @@ async def on_message(message):
             await message.channel.send("{}, 당신은 관리자가 아닙니다".format(message.author.mention))
 
             
-    if message.content.startswith('^골라'):
+    if message.content.startswith(f'{PREFIX}골라'):
         choices = message.content.split()[1:]  
         if len(choices) < 2:  
             embed = discord.Embed(title="고를 수 있는 단어가 2가지 이상이여야 합니다", color=0xFFFF00)
@@ -68,7 +68,7 @@ async def on_message(message):
             embed = discord.Embed(title='선택 결과', description=f'"{selected}" 선택되었습니다.', color=0x00ff00)
             await message.channel.send(embed=embed)
 
-    if message.content.startswith('^주사위'):
+    if message.content.startswith(f'{PREFIX}주사위'):
         try:
             num = int(message.content.split()[1])  
             if num < 2:  
@@ -82,13 +82,13 @@ async def on_message(message):
             embed = discord.Embed(title='입력 오류', description='주사위 눈의 수는 정수여야 합니다.', color=0xff0000)
             await message.channel.send(embed=embed)
             
-    if message.content == ('^authenticate1'):
+    if message.content == (f'{PREFIX}authenticate1'):
         embed = discord.Embed(title="인증을 완료하세요", description="이모지를 눌러주세요.", color=0x00ff00)
         channel = client.get_channel(f'{INCHANNEL}')
         msg = await channel.send(embed=embed)
         await msg.add_reaction("<:check:1046316929561935934>")
 
-    if message.content == ("^authenticate2"):
+    if message.content == (f'{PREFIX}authenticate2'):
         embed = discord.Embed(title="아래 역할을 받고싶다면 아래 이모지를 눌러주세요", description=":one: : 공지 알림 :two: : 봇 가동 알림", color=0x00ff00)
         channel = client.get_channel(f'{ADDGUIDEC}')
         msg = await channel.send(embed=embed)
