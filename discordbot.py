@@ -23,7 +23,9 @@ async def on_ready():
 async def on_message(message):
     if message.author == client.user:
         return
-
+    if message.content == f'{PREFIX}핑':
+        await message.channel.send(f'퐁! {round(round(client.latency, 4)*1000)}ms')
+        
     if message.content == f'{PREFIX}도움말':
         embed = discord.Embed(title="에루의 간단 도움말!", description= "^주사위 (숫자) : 주사위를 굴립니다!\n――――――――――――――――――――――――――――\n^골라 (단어1) (단어2)... : 단어 중에서 하나를 골라줍니다!", color=0xFFFF00)
         await message.channel.send (embed=embed)
