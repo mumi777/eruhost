@@ -1,6 +1,6 @@
 from cmath import log
 from distutils.sysconfig import PREFIX
-import discord, datetime, pytz, random
+import discord, random
 from dotenv import load_dotenv
 import os
 load_dotenv()
@@ -11,12 +11,13 @@ ACCCHANNEL = os.environ['ACCCHANNEL']
 ACSCHANNEL = os.environ['ACSCHANNEL']
 INCHANNEL = os.environ['INCHANNEL']
 ADDGUIDEC = os.environ['ADDGUIDEC']
-client = discord.Client()
+intents = intents=discord.Intents.all()
+client = discord.Client(intents=intents)
 
 @client.event
 async def on_ready():
     print(f'Logged in as {client.user}.')
-    await client.change_presence(status=discord.Status.online, activity=discord.Game("그냥 온라인"))
+    await client.change_presence(status=discord.Status.online, activity=discord.Game("^도움말ㅣ서버 관리"))
     
 @client.event
 async def on_message(message):
