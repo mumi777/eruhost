@@ -1,6 +1,6 @@
 from cmath import log
 from distutils.sysconfig import PREFIX
-import discord
+import discord, datetime, pytz, random
 from dotenv import load_dotenv
 import os
 load_dotenv()
