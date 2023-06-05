@@ -11,8 +11,11 @@ ACCCHANNEL = os.environ['ACCCHANNEL']
 ACSCHANNEL = os.environ['ACSCHANNEL']
 INCHANNEL = os.environ['INCHANNEL']
 ADDGUIDEC = os.environ['ADDGUIDEC']
+LOGCHANNEL = os.environ['LOGCHANNEL']
 intents = intents=discord.Intents.all()
 client = discord.Client(intents=intents)
+intents.message_delete = True
+intents.message_edit = True
 
 @client.event
 async def on_ready():
@@ -99,6 +102,27 @@ async def on_message(message):
         await msg.add_reaction("1️⃣")
         await msg.add_reaction("2️⃣")
 
+@client.event
+async def on_message_delete(message):
+    channel_id = LOGCHANNEL
+    channel = client.get_channel(channel_id)
+    embed = discord.Embed(title='메시지 삭제', description=f'메시지가 삭제되었습니다.', color=discord.Color.red())
+    embed.add_field(name='메시지 내용', value=message.content, inline=False)
+    embed.add_field(name='채널', value=message.channel.name, inline=False)
+    embed.add_field(name='시간', value=message.created_at, inline=False)
+    await channel.send(embed=embed)
+
+@client.event
+async def on_message_edit(before, after):
+    channel_id = LOGCHANNEL
+    channel = client.get_channel(channel_id)
+    embed = discord.Embed(title='메시지 수정', description=f'메시지가 수정되었습니다.', color=discord.Color.blue())
+    embed.add_field(name='수정 전', value=before.content, inline=False)
+    embed.add_field(name='수정 후', value=after.content, inline=False)
+    embed.add_field(name='채널', value=before.channel.name, inline=False)
+    embed.add_field(name='시간', value=after.edited_at, inline=False)
+    await channel.send(embed=embed)
+        
 @client.event
 async def on_reaction_add(reaction, user):
     if reaction.message.author == client.user and str(reaction.emoji) == "<:check:1046316929561935934>":
