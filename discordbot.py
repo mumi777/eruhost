@@ -14,8 +14,6 @@ ADDGUIDEC = os.environ['ADDGUIDEC']
 LOGCHANNEL = os.environ['LOGCHANNEL']
 intents = intents=discord.Intents.all()
 client = discord.Client(intents=intents)
-intents.message_delete = True
-intents.message_edit = True
 
 @client.event
 async def on_ready():
@@ -104,7 +102,7 @@ async def on_message(message):
 
 @client.event
 async def on_message_delete(message):
-    channel_id = LOGCHANNEL
+    channel_id = f'{LOGCHANNEL}'
     channel = client.get_channel(channel_id)
     embed = discord.Embed(title='메시지 삭제', description=f'메시지가 삭제되었습니다.', color=discord.Color.red())
     embed.add_field(name='메시지 내용', value=message.content, inline=False)
@@ -114,7 +112,7 @@ async def on_message_delete(message):
 
 @client.event
 async def on_message_edit(before, after):
-    channel_id = LOGCHANNEL
+    channel_id = f'{LOGCHANNEL}'
     channel = client.get_channel(channel_id)
     embed = discord.Embed(title='메시지 수정', description=f'메시지가 수정되었습니다.', color=discord.Color.blue())
     embed.add_field(name='수정 전', value=before.content, inline=False)
