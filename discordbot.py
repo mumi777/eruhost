@@ -11,7 +11,6 @@ ACCCHANNEL = os.environ['ACCCHANNEL']
 ACSCHANNEL = os.environ['ACSCHANNEL']
 INCHANNEL = os.environ['INCHANNEL']
 ADDGUIDEC = os.environ['ADDGUIDEC']
-LOGCHANNEL = os.environ['LOGCHANNEL']
 intents = intents=discord.Intents.all()
 client = discord.Client(intents=intents)
 
